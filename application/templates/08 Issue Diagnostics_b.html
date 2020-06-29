@@ -1,0 +1,125 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<head>
+	<title>diagnostics_master</title>
+   <!--Made with love by Mutiullah Samim -->
+   
+	<!--Bootsrap 4 CDN-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <!--Fontawesome CDN-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<!--Custom styles-->
+	<!--link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles.css')}}"-->
+
+<html>
+<body style="height:100%;width:100%;background-image: linear-gradient(to right, #bdc3c7 , #2c3e50);">
+<div class="container" ><a class="navbar-brand" href="#" style="color:black;font-size: 40px;font-family: sans-serif;">AbXy Hospital</a>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="width: 30%;right:40px;top:100px;height:10%;border-radius: 10px;">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+    <ul class="navbar-nav justify-content-end">
+        <li class="nav-item dropdown p-1">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 18px">
+          Patient
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/createcustomer">Create Patient</a>
+          <a class="dropdown-item" href="/customersearch/1">Update Patient</a>
+          <a class="dropdown-item" href="/customersearch/2">Delete Patient</a>
+          <a class="dropdown-item" href="/customersearch/2">View Patient</a>
+          <a class="dropdown-item" href="/customersearch/2">Display Patients</a>
+          <a class="dropdown-item" href="/customersearch/2">Generate Bill</a>
+        </div>
+      </li>
+
+
+        <li class="nav-item dropdown p-1">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 18px">
+          Medicine
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/createacct" >Issue Medicine</a>
+          </div>
+      </li>      
+      <li class="nav-item dropdown p-1">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 18px">
+          Diagnostics
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/customerstatus">Issue Diagnostics</a>
+          </div>
+      </li>
+      
+    </ul>
+  </div>
+</nav>
+	<div class="d-flex justify-content-center h-50 w-75" style="position:fixed;top:200px;left: 490px;">
+		<div class="card">
+			<div class="card-header" style="background-color:rgba(112, 128,144,0.5);">
+				<h3>Diagnosticss</h3>
+				</div>
+			<div class="card-body"style="background-color:rgba(112, 128,144,0.2);">
+				<form method="post" class="p-2">
+					<div class="input-group form-group p-2">
+						<div class="input-group-prepend">
+							
+						</div>
+						<select style="background-color:rgba(112, 128,144,0.1);" class="form-control" placeholder="username" required name="diagnostics" id="medicine">
+							<option value="no" selected disabled hidden> 
+								Select Diagnostics
+							</option> 
+							{% for m in diag %}
+						<option>{{m}}</option>
+						{% endfor %}
+						</select>
+											
+					</div>
+					<div class="input-group form-group p-2" >
+						<div class="input-group-prepend">
+							
+						</div>
+					</div>
+					<div class="form-group p-2">
+						<input type="submit" name="add" value="add" class="btn float-right btn-primary">
+					</div>
+
+				</form>
+				<div style="position:fixed;top:370px;left:80px;width:50%;border-radius: 10px;overflow: hidden; "> 
+					<h1>Diagnostics Details</h1><div style="height:150px;overflow-y:scroll;">
+				  <table class="table table-striped table-light " >
+				  <thead>
+					<tr>
+					  <th scope="col">Name of the Test</th>
+					  
+					  <th scope="col">Amount</th>
+					  </tr>
+				  </thead>
+				  <tbody >
+					{% for m in added_diag%}
+					<tr>
+					  
+					  <th>{{m[0]}}</th>
+					  <td>{{m[1]}}</td>
+					  
+					  
+					</tr> 
+					{% endfor %}
+				  </tbody>
+				</table></div>
+				<form method="POST">
+					<input type="submit" style="position:fixed;top:575px;left:615px;width:150px;" name="Diagnostics" value="Update" class=" btn float-right btn-primary p-1"></div>
+					  </form>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
