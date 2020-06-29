@@ -151,8 +151,8 @@ def Delete_Patient():
 
 @app.route("/View_Patient")
 def View_Patient(data = None):
-    #global loggedin
-    #if loggedin==True:        
+    global loggedin
+    if loggedin==True:        
         cur = mysql.connection.cursor()
         cur.execute("Select * from patient where status= %s" , ("Active",))
         result=cur.fetchall()
@@ -160,8 +160,8 @@ def View_Patient(data = None):
         for x in result:
             data.append(list(x)) 
         return render_template("06 View Patients.html", data =data)
-    #else:
-    #    return render_template('01 Login Page.html')
+    else:
+        return render_template('01 Login Page.html')
 
 @app.route("/Search_Patient")
 def Search_Patient(data = None):        
