@@ -1,0 +1,228 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<head>
+  <title>Patients Bill Page</title>
+   <!--Made with love by Mutiullah Samim -->
+   
+  <!--Bootsrap 4 CDN-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <!--Fontawesome CDN-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+  <!--Custom styles-->
+  <!--link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles.css')}}"-->
+<style >
+.scroll-thead{
+    width: 100%;
+    display: inline-table;
+}
+
+.my-custom-scrollbar {
+position: relative;
+height: 200px;
+overflow: auto;
+}
+.table-wrapper-scroll-y {
+display: block;
+}
+
+.scroll-tbody-y
+{
+    display: block;
+    overflow-y: scroll;
+}
+
+.table-body{
+    height: 200px/*fix height here*/;
+}</style>
+<html >
+<body style="height:100%;width:100%;background-image: linear-gradient(to right, #bdc3c7 , #2c3e50);">
+<div class="container justify-content-center " style="height:100%;width: 100%;">
+
+  <div style="position:fixed;top:70px;left:580px;width:55%;border-radius: 10px;overflow: hidden; "> 
+    <h1>Patient Details</h1><div class=" table-responsive" style="height:130px;">
+  <table class="table table-striped mb-0 table-sm table-light " >
+  <thead>
+    <tr>
+      <th scope="col">Patient SSN Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Age</th>
+      <th scope="col">Address</th>
+      <th scope="col">DOJ</th>
+      <th scope="col">Type Of Room</th>
+    </tr>
+  </thead>
+  <tbody >
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr> <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr> <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr> <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr> <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+      <td>Otto</td>
+      <td>@mdo</td></tr>
+  </tbody>
+</table></div>
+<div class="row"><div class="col col-sm-6">
+<h4><strong>No. Of Days :</strong></h4></div><div class="col col-sm-6">
+<h4><strong>Bill for Room :</strong></h4></div></div>
+  </div>
+
+
+
+
+
+  <div style="position:fixed;top:320px;left:40px;width:45%;border-radius: 10px;overflow: hidden; "> 
+    <h1>Pharmacy Charges</h1><div style="height:120px;overflow-y:scroll;">
+  <table class="table table-striped table-sm table-light " >
+  <thead>
+    <tr>
+      <th scope="col">Medicine</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Rate</th>
+      <th scope="col">Amount</th>
+      </tr>
+  </thead>
+  <tbody >
+    <tr>
+      <th scope="row">1</th>
+      <td>@mdo</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr> <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr> <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr> <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr> <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>Otto</td>
+      <td>@mdo</td></tr>
+  </tbody>
+</table></div><div class="row"><div class="col col-sm-6"></div><div class="col col-sm-6 text-align-right"><h4><strong>Bill For Pharmacy :</strong></h4>
+</div></div>  </div><div style="position:relative;top:300px;left:650px;height:50%;width:50%;border-radius: 10px;overflow: hidden; "> 
+    <h1>Diagnostics Charges</h1><div style="height:130px;overflow-y:scroll;">
+  <table class="table table-striped table-sm table-light " >
+  <thead>
+    <tr>
+      <th scope="col">Medicine</th>
+      <th scope="col">Quantity</th>
+     
+      </tr>
+  </thead>
+  <tbody >
+    <tr>
+      
+      <td>@mdo</td>
+     
+      <td>@mdo</td>
+    </tr> <tr>
+      
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr> <tr>
+      
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr> <tr>
+      <td>Mark</td>
+      <td>Otto</td>
+    </tr> <tr>
+      
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <td>Larry</td>
+      <td>@mdo</td></tr>
+  </tbody>
+</table></div><div class="row"><div class="col col-sm-6"></div><div class="col col-sm-6 text-align-right"><h4><strong>Bill For Diagnostics :</strong></h4>
+</div></div>  
+
+<div class="row" style="position:relative;top:20px;">
+  <div class="col col-sm-6">
+    <h4><strong>Grand Total : </h4>
+  </div>
+  <div class="col col-sm-6">
+    <button class="btn btn-primary  align-right" style="position: relative;left:100px;width: 140px">Confirm</button>
+  </div>
+</div></div>
+
+
+
+</div>
+</body>
+</html>
