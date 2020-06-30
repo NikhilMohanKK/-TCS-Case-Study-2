@@ -42,17 +42,28 @@ def login():
                 session['loggedin'] = True
                 session['username'] = account[0]
                 session['timestamp']=datetime.now()
+                session['message']="Logged In Successfully"
                 loggedin=True
-                return 'success'
+                return redirect('/Home')
             else:
                 return render_template("01 Login Page.html")
         else:
             return "already loggedin"
     return render_template("01 Login Page.html")
 
+
+@app.route('/Home')
+def Home():
+    global loggedin
+    if loggedin==True:   
+        return render_template("10 Home Page.html",name=session['username'],message=session['message'])
+    else:
+        return redirect('/')
+
 @app.route('/Create_Patient',methods=['GET', 'POST'])
 def Create_Patient():
     global loggedin
+    session['message']=""
     if loggedin==True:        
         if request.method=="POST":
             ssn_id=request.form.get('ssn_id')
@@ -70,7 +81,8 @@ def Create_Patient():
                 cur.execute("insert into patient(ws_ssn,ws_pat_name,ws_age,ws_adrs,ws_doj,ws_rtype,city,state,status) values (%s,%s,%s,%s,%s,%s,%s,%s,'Active')",(ssn_id,patient_name,patient_age,address,date_of_admission,bed_type,city,state))
                 mysql.connection.commit()
                 cur.close()
-                return "Patient Created Successfully"
+                session['message']="Patient Created Successfully"
+                return redirect('/Home')
         return render_template('02 Create Patient.html')
     else:
         return redirect('/')
@@ -78,6 +90,7 @@ def Create_Patient():
 
 @app.route('/Update_Patient',methods=['GET', 'POST'])
 def Update_Patient():
+    session['message']=""
     global loggedin
     if loggedin==True:        
         if request.method=="POST":
@@ -107,11 +120,15 @@ def Update_Patient():
                         cur.execute("update patient set ws_pat_name=%s,ws_age=%s,ws_adrs=%s,ws_doj=%s,ws_rtype=%s,city=%s,state=%s,status=%s where ws_ssn=%s",[patient_name,patient_age,address,date_of_admission,bed_type,city,state,fetchvalue[9],ssn_id])
                         mysql.connection.commit()
                         cur.close()
-                        return "Patient Updated Successfully"
+                        session['message']="Patient Updated Successfully"
+                        return redirect('/Home')                        
                     else:
-                        return "No Patient Exists"
+                        session['message']="No Patient Exists"
+                        return redirect('/Home')                        
+
                 else:
-                    return "No Patient Exists"
+                    session['message']="No Patient Exists"
+                    return redirect('/Home')                        
         return render_template('03 Update Patient.html',data=None)
     else:
         return redirect('/')
@@ -119,6 +136,7 @@ def Update_Patient():
 
 @app.route('/Delete_Patient',methods=['GET', 'POST'])
 def Delete_Patient():
+    session['message']=""
     global loggedin
     if loggedin==True:        
         if request.method=="POST":
@@ -139,11 +157,16 @@ def Delete_Patient():
                         cur.execute("delete from patient where ws_ssn=%s",[ssn_id])
                         mysql.connection.commit()
                         cur.close()
-                        return "Patient Record Deleted Successfully"
+                        session['message']="Patient Record Deleted Successfully"
+                        return redirect('/Home')                        
                     else:
-                        return "No Patient Exists"
+                        session['message']="No Patient Exists"
+                        return redirect('/Home')                        
+
                 else:
-                        return "No Patient Exists"
+                    session['message']="No Patient Exists"
+                    return redirect('/Home')                        
+
         return render_template('04 Delete Patient.html',data=None)
     else:
         return redirect('/')
@@ -151,6 +174,7 @@ def Delete_Patient():
 
 @app.route("/View_Patient")
 def View_Patient(data = None):
+    session['message']=""
     global loggedin
     if loggedin==True:        
         cur = mysql.connection.cursor()
@@ -165,6 +189,7 @@ def View_Patient(data = None):
 
 @app.route("/Search_Patient")
 def Search_Patient(data = None):        
+    session['message']=""
     global loggedin
     if loggedin==True:        
         cur = mysql.connection.cursor()
@@ -185,6 +210,7 @@ def Search_Patient(data = None):
     
 @app.route('/Patient_Med',methods=["GET","POST"])
 def Patient_Med():
+    session['message']=""
     global loggedin
     if loggedin==True:        
         if request.method == 'POST':
@@ -221,6 +247,7 @@ def Patient_Med():
     
 @app.route('/Issue_Medicine',methods=["GET","POST"])
 def Issue_Medicine():
+    session['message']=""
     global loggedin
     if loggedin==True:        
         list_med=session['list_med']
@@ -268,6 +295,7 @@ def Issue_Medicine():
 
 @app.route('/Patient_Diag',methods=["GET","POST"])
 def Patient_Diag():
+    session['message']=""
     global loggedin
     if loggedin==True:        
         if request.method == 'POST':
@@ -304,6 +332,7 @@ def Patient_Diag():
 
 @app.route('/Add_Diagnostics',methods=["GET","POST"])
 def Add_Diagnostics():
+    session['message']=""
     global loggedin
     if loggedin==True:        
         list_med=session['list_med']
@@ -345,6 +374,7 @@ def Add_Diagnostics():
 
 @app.route("/Generate_Bill",methods=['GET', 'POST'])
 def Generate_Bill():
+    session['message']=""
     global loggedin
     if loggedin==True:        
         if request.method=="POST":
@@ -378,9 +408,11 @@ def Generate_Bill():
                    
                    return render_template("09 Billing System.html",account=account,nod=nod,nods=nods,med=result,dia=dia)
                else:
-                    return "No Active Patient with this id"
+                   session['message']="No Active Patient with this id"
+                   return redirect('/Home')
             if "con" in request.form:
-              return " success"
+                   session['message']="Patient has been Discharged"
+                   return redirect('/Home')
               
         return render_template("09 Billing System.html",account=(),nod=0,nods=0,med=(),dia=())
     else:
