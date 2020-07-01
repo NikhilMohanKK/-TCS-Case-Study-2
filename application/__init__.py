@@ -315,7 +315,7 @@ def Patient_Diag():
                     diag= cur.fetchall()
                     print(diag)
                 else:
-                    flash("No Medicines with that ID!")
+                    flash("No Diagnostics with that ID!")
                     diag=[]
                 return render_template("08 Issue Diagnostics_a.html",user=patientDetails,diag=diag)
                 cur.close()
@@ -400,7 +400,7 @@ def Generate_Bill():
                    cur.execute("select  med_name,sum(ws_qty),med_rate,sum(ws_qty*med_rate) from track_medicines LEFT JOIN medicines_master ON track_medicines.ws_med_id=medicines_master.med_id where ws_pat_id=%s group by med_name ",[pid])
                    result = cur.fetchall()
                    print(result)
-                   cur.execute(" select  diagn_name,diagn_rate from track_diagnostics LEFT JOIN diagnostics_master ON track_diagnostics.ws_diagn_id=diagnostics_master.diagn_id where ws_pat_id=%s group by diagn_name ",[pid])
+                   cur.execute(" select  diagn_name,sum(diagn_rate) from track_diagnostics LEFT JOIN diagnostics_master ON track_diagnostics.ws_diagn_id=diagnostics_master.diagn_id where ws_pat_id=%s group by diagn_name ",[pid])
                    dia=cur.fetchall()
                    cur.execute("update patient set status=%s where ws_pat_id=%s",("discharged",pid))
                    mysql.connection.commit()
@@ -410,7 +410,7 @@ def Generate_Bill():
                else:
                    session['message']="No Active Patient with this id"
                    return redirect('/Home')
-            if "con" in request.form:
+            elif "con" in request.form:
                    session['message']="Patient has been Discharged"
                    return redirect('/Home')
               
@@ -428,4 +428,4 @@ def Logout():
 
 
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run(debug=False)
